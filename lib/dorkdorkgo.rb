@@ -1,7 +1,7 @@
 require "dorkdorkgo/version"
 require "dorkdorkgo/user_agent"
 require 'nokogiri'
-require 'rest-client'
+require 'rest_client'
 
 class Dorkdorkgo
     include UserAgent
