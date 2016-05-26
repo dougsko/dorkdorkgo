@@ -16,7 +16,7 @@ class Dorkdorkgo
 
         trap("INT") do 
             puts "Caught ctrl-c."
-            return links
+            return links.uniq
         end
 
         page = Nokogiri::HTML(RestClient.post("https://duckduckgo.com/html", {'q' => @q}, :user_agent => get_agent ))
@@ -27,7 +27,7 @@ class Dorkdorkgo
                 yield URI(link['href']) if block_given?
             end
             puts "found " + links.size.to_s + " so far"
-            page.css("input[type='hidden']").each do |link|      
+            page.css("input[type='hidden']").each do |link|
                 params[link['name']] = link['value']
             end
             sleep_time = rand(1..10)
